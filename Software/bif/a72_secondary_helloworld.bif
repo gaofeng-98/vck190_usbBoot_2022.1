@@ -1,0 +1,10 @@
+all:
+{
+ id_code = 0x14ca8093
+ extended_id_code = 0x01
+ id = 0x2
+ image
+ {
+   {core=a72-0 ,file=hello_a72_0.elf}
+ }
+}
