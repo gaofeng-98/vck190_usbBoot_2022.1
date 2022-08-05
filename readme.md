@@ -14,9 +14,9 @@
 
 4. [Building Software Design](#building-software-design)
 
-5. [Generate boot images](#Generate boot images)
+5. [Generate Boot Images](#generate-boot-images)
 
-6. [Running the design](#Running the design)
+6. [Running the Design](#running-the-design)
 
 # Introduction
 Versal™ ACAP combines adaptable processing and acceleration engines with programmable logic and configurable connectivity to enable custom, heterogeneous hardware solutions for a wide variety of applications in Data Center, automotive, 5G wireless, wired network, and defense. Versal ACAP supports several secondary boot modes for application flexibility. This tutorial highlights the way to use USB as secondary boot device.
@@ -142,8 +142,7 @@ petalinux-config --get-hw-description=../../Hardware/vck190_ddr4/ --silentconfig
 petalinux-build
 ```
 
-# Generate boot images
-
+# Generate Boot Images
 ## Generate the primary boot image
 The primary boot image is used to boot plm from primary boot device, in this example, it is microSD card. The simplest method to generate the primary boot image is to modify the generated bif in vivado and then generate pdi again. User can look for the bif file that Vivado uses to generate PDI at <vivado project>/ <vivado project>.runs/impl_1/ *.bif, and then add "boot_device {usb}" to this bif, which would let PLM know that USB is the secondary boot device.
 ```
@@ -184,7 +183,7 @@ bootgen -arch versal -image a72_secondary_helloworld.bif -w -o boot_secondary_he
 bootgen -arch versal -image a72_secondary_u-boot.bif -w -o boot_secondary_u-boot.bin
 ```
 
-# Running the design
+# Running the Design
 ## UART serial terminal recommended:
 Vitis serial Terminal or a terminal emulator program for UART (i.e. Putty or MobaXterm) can be used to display valuable PLM log boot status.
 
