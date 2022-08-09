@@ -192,8 +192,8 @@ When UART is not available, Vivado Design Suite and Vitis xsct/xsdb command line
 1. Change the name of boot_primary.bin to boot.bin, then copy it to MicroSD card, and then boot up VCK190 with MicroSD.
 2. PLM should wait for secondary image after printing below messages
 ```sh
-[11833.689453]Loading PDI from USB
-[11836.709006]Monolithic/Master Device
+[849.246]Loading PDI from USB
+[851.827]Monolithic/Master Device
 ```
 3. Loading secondary image by dfu-util in PC host
 - If loading A72 helloworld application, copy boot_secondary_helloworld.bin to host and run below commands to download secondary image to VCK190
@@ -201,7 +201,149 @@ When UART is not available, Vivado Design Suite and Vitis xsct/xsdb command line
 sudo dfu-util -l
 sudo dfu-util -D boot_secondary_helloworld.bin
 ```
+Helloworld prints should be seen in console.
+```
+[0.073]Xilinx Versal Platform Loader and Manager
+[0.131]Release 2022.1   Aug  9 2022  -  02:52:12
+[0.189]Platform Version: v2.0 PMC: v2.0, PS: v2.0
+[0.254]BOOTMODE: 0xE, MULTIBOOT: 0xF0000000
+[0.312]****************************************
+[0.532]Non Secure Boot
+[3.357]PLM Initialization Time
+[3.407]***********Boot PDI Load: Started***********
+[3.469]Loading PDI from SD1_LS
+[3.518]Monolithic/Master Device
+[433.616]430.119 ms: PDI initialization time
+[433.678]+++Loading Image#: 0x1, Name: lpd, Id: 0x04210002
+[433.747]---Loading Partition#: 0x1, Id: 0xC
+[486.471] 52.635 ms for Partition#: 0x1, Size: 2688 Bytes
+[491.466]---Loading Partition#: 0x2, Id: 0xB
+[495.985] 0.528 ms for Partition#: 0x2, Size: 48 Bytes
+[500.257]---Loading Partition#: 0x3, Id: 0xB
+[512.462] 8.212 ms for Partition#: 0x3, Size: 59376 Bytes
+[514.725]---Loading Partition#: 0x4, Id: 0xB
+[519.500] 0.786 ms for Partition#: 0x4, Size: 1936 Bytes
+[523.686]---Loading Partition#: 0x5, Id: 0xB
+[528.594] 0.916 ms for Partition#: 0x5, Size: 3536 Bytes
+[532.829]+++Loading Image#: 0x2, Name: pl_cfi, Id: 0x18700000
+[538.076]---Loading Partition#: 0x6, Id: 0x3
+[718.749] 176.682 ms for Partition#: 0x6, Size: 837872 Bytes
+[721.271]---Loading Partition#: 0x7, Id: 0x5
+[832.500] 107.239 ms for Partition#: 0x7, Size: 512704 Bytes
+[835.052]+++Loading Image#: 0x3, Name: fpd, Id: 0x0420C003
+[840.193]---Loading Partition#: 0x8, Id: 0x8
+[845.391] 1.206 ms for Partition#: 0x8, Size: 1616 Bytes
+[849.246]Loading PDI from USB
+[851.827]Monolithic/Master Device
+[28107.641]27258.360 ms: PDI initialization time
+[28109.403]+++Loading Image#: 0x0, Name: user_subsystem, Id: 0x1C000000
+[28115.429]---Loading Partition#: 0x0, Id: 0x0
+[28119.621] 0.031 ms for Partition#: 0x0, Size: 163920 Bytes
+[28124.985]***********Boot PDI Load: Done***********
+[28129.589]325.329 ms: ROM Time
+[28132.405]Total PLM Boot Time
+Hello World
+Successfully ran Hello World application
+```
+- If loading u-boot, copy boot_secondary_u-boot.bin to host and run below commands to download secondary image to VCK190
+```sh
+sudo dfu-util -l
+sudo dfu-util -D boot_secondary_u-boot.bin
+```
+u-boot should be seen in console.
+```
+[0.072]Xilinx Versal Platform Loader and Manager
+[0.130]Release 2022.1   Aug  5 2022  -  03:50:08
+[0.189]Platform Version: v2.0 PMC: v2.0, PS: v2.0
+[0.255]BOOTMODE: 0xE, MULTIBOOT: 0xF0000000
+[0.308]****************************************
+[0.540]Non Secure Boot
+[3.448]PLM Initialization Time
+[3.498]***********Boot PDI Load: Started***********
+[3.559]Loading PDI from SD1_LS
+[3.608]Monolithic/Master Device
+[3.700]0.115 ms: PDI initialization time
+[3.759]+++Loading Image#: 0x1, Name: lpd, Id: 0x04210002
+[3.827]---Loading Partition#: 0x1, Id: 0xC
+[54.296] 50.383 ms for Partition#: 0x1, Size: 2960 Bytes
+[59.192]---Loading Partition#: 0x2, Id: 0xB
+[63.606] 0.520 ms for Partition#: 0x2, Size: 48 Bytes
+[67.787]---Loading Partition#: 0x3, Id: 0xB
+[118.395] 46.713 ms for Partition#: 0x3, Size: 59376 Bytes
+[120.737]---Loading Partition#: 0x4, Id: 0xB
+[124.723] 0.008 ms for Partition#: 0x4, Size: 1936 Bytes
+[129.674]---Loading Partition#: 0x5, Id: 0xB
+[133.663] 0.011 ms for Partition#: 0x5, Size: 3536 Bytes
+[138.791]+++Loading Image#: 0x2, Name: pl_cfi, Id: 0x18700000
+[144.024]---Loading Partition#: 0x6, Id: 0x3
+[692.862] 544.856 ms for Partition#: 0x6, Size: 707072 Bytes
+[695.377]---Loading Partition#: 0x7, Id: 0x5
+[1153.940] 454.583 ms for Partition#: 0x7, Size: 564304 Bytes
+[1156.571]+++Loading Image#: 0x3, Name: fpd, Id: 0x0420C003
+[1161.783]---Loading Partition#: 0x8, Id: 0x8
+[1166.263] 0.414 ms for Partition#: 0x8, Size: 1616 Bytes
+[1170.985]Loading PDI from USB
+[1173.644]Monolithic/Master Device
+[26846.816]25675.796 ms: PDI initialization time
+[26848.574]+++Loading Image#: 0x0, Name: apu_subsystem, Id: 0x1C000000
+[26854.498]---Loading Partition#: 0x0, Id: 0x0
+[26858.657] 0.007 ms for Partition#: 0x0, Size: 23584 Bytes
+[26863.872]---Loading Partition#: 0x1, Id: 0x0
+[26868.038] 0.015 ms for Partition#: 0x1, Size: 63440 Bytes
+[26873.244]---Loading Partition#: 0x2, Id: 0x0
+[26877.570] 0.175 ms for Partition#: 0x2, Size: 1055072 Bytes
+[26882.864]***********Boot PDI Load: Done***********
+[26887.460]4702.027 ms: ROM Time
+[26890.353]Total PLM Boot Time
+NOTICE:  ATF running on Xilinx Versal Silicon
+INFO:    BL31: fsbl-atf handover success 0.
+NOTICE:  BL31: Secure code at 0x0
+NOTICE:  BL31: Non secure code at 0x8000000
+NOTICE:  BL31: v2.6(debug):v1.1-9207-g67ca59c67
+NOTICE:  BL31: Built : 03:46:40, Mar 24 2022
+INFO:    GICv3 with legacy support detected.
+INFO:    ARM GICv3 driver initialized in EL3
+INFO:    Maximum SPI INTID supported: 191
+INFO:    BL31: Initializing runtime services
+WARNING: BL31: cortex_a72: CPU workaround for 859971 was missing!
+WARNING: BL31: cortex_a72: CPU workaround for 1319367 was missing!
+INFO:    BL31: cortex_a72: CPU workaround for cve_2017_5715 was applied
+INFO:    BL31: cortex_a72: CPU workaround for cve_2018_3639 was applied
+INFO:    BL31: Preparing for EL3 exit to normal world
+INFO:    Entry point address = 0x8000000
+INFO:    SPSR = 0x3c9
 
+
+U-Boot 2022.01 (Apr 04 2022 - 07:53:54 +0000)
+
+CPU:   Versal
+Silicon: v2
+Model: Xilinx Versal vck190 Eval board revA
+DRAM:  8 GiB
+EL Level:       EL2
+MMC:   mmc@f1050000: 0
+Loading Environment from nowhere... OK
+In:    serial@ff000000
+Out:   serial@ff000000
+Err:   serial@ff000000
+Bootmode: SD_MODE
+Net:
+ZYNQ GEM: ff0c0000, mdio bus ff0c0000, phyaddr 1, interface rgmii-id
+zynq_gem ethernet@ff0c0000: Failed to read eth PHY id, err: -2
+
+Warning: ethernet@ff0c0000 (eth0) using random MAC address - 0e:a1:48:3a:69:d5
+eth0: ethernet@ff0c0000
+ZYNQ GEM: ff0d0000, mdio bus ff0c0000, phyaddr 2, interface rgmii-id
+zynq_gem ethernet@ff0d0000: Failed to read eth PHY id, err: -2
+
+Warning: ethernet@ff0d0000 (eth1) using random MAC address - 62:5f:35:ad:91:b5
+, eth1: ethernet@ff0d0000
+Hit any key to stop autoboot:  0
+Versal>
+```
+## Tips and Tricks
+- About how to install DFU on Windows/Linux host, please refer to this wiki page: https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842468/ZynqMp+USB+Stadalone+Driver#ZynqMpUSBStadaloneDriver-USBDFUTesting
+ 
 
 
 
