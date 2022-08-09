@@ -100,6 +100,8 @@ Enter the `Scripts` directory. From the command line run the following:
 vivado -source create_vivado_project.tcl
 ```
 The Vivado project `vck190_ddr4` will be created and built in the `Hardware` directory. A .xsa file will be generated in Vivado project directory.
+#### **NOTE**:
+If you are working under windows, you may need to move the file location and change the project name to keep the file path as short as possible since vivado has a limit on file path length under windows.
 
 # Building Software Design 
 
