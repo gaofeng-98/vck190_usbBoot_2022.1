@@ -1,6 +1,6 @@
 
 proc app_create {} {
-	setws ../Software/Vitis/prj_app
+	setws -switch ../Software/Vitis/prj_app
 	platform create -name vck190_wrapper -hw ../Hardware/vck190_ddr4/design_1_wrapper.xsa
 	
 	domain create -name standalone_psv_cortexa72_0 -os standalone -proc versal_cips_0_pspmc_0_psv_cortexa72_0
