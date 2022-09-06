@@ -21,11 +21,11 @@ set_property board_part xilinx.com:vck190:part0:3.0 [current_project]
 # Source the BD file
 source design_bd.tcl
 
-make_wrapper -files [get_files ../Hardware/vck190_ddr4/vck190_ddr4.srcs/sources_1/bd/design_1/design_1.bd] -top
+make_wrapper -files [get_files ../Design/Hardware/vck190_ddr4/vck190_ddr4.srcs/sources_1/bd/design_1/design_1.bd] -top
 
-add_files -norecurse ../Hardware/vck190_ddr4/vck190_ddr4.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
+add_files -norecurse ../Design/Hardware/vck190_ddr4/vck190_ddr4.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
 
 launch_runs impl_1 -to_step write_device_image -jobs 4
 
-write_hw_platform -fixed -include_bit -force -file ../Hardware/vck190_ddr4/design_1_wrapper.xsa
+write_hw_platform -fixed -include_bit -force -file ../Design/Hardware/vck190_ddr4/design_1_wrapper.xsa
 
