@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Create Vivado project
-create_project vck190_ddr4 ../Hardware/vck190_ddr4 -part xcvc1902-vsva2197-2MP-e-S
+create_project vck190_ddr4 ..Design/Hardware/vck190_ddr4 -part xcvc1902-vsva2197-2MP-e-S
 
 # Set the project device
 set_property board_part xilinx.com:vck190:part0:3.0 [current_project]
