@@ -1,7 +1,8 @@
 
 proc app_create {} {
-	setws -switch ../Software/Vitis/prj_app
-	platform create -name vck190_wrapper -hw ../Hardware/vck190_ddr4/design_1_wrapper.xsa
+	setws -switch ../Design/Software/Vitis/prj_app
+
+	platform create -name vck190_wrapper -hw ../Design/Hardware/vck190_ddr4/design_1_wrapper.xsa
 	
 	domain create -name standalone_psv_cortexa72_0 -os standalone -proc versal_cips_0_pspmc_0_psv_cortexa72_0
 
@@ -11,7 +12,7 @@ proc app_create {} {
 }
 
 proc app_build {} {
-	setws ../Software/Vitis/prj_app
+	setws ../Design/Software/Vitis/prj_app
 	app build -name hello_a72_0
 }
 
